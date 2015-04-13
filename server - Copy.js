@@ -3,16 +3,16 @@ var socketIO = require('socket.io');
 var io = socketIO.listen(server);
 io.sockets.on('connection', function(socket){
   console.log("connect");
-  socket.on('send_messages', function(data){
-      //console.log("hello : " + data.value);
-      io.sockets.emit('receive_messages_all', { messages:data.messages,name:data.name }); //SV ส่งให้ทุกคน
-	  //socket.broadcast.emit('hello', { value: data.value }); //SV ส่งให้ทุกคนยกเว้นตัวเอง
+  socket.on('hello', function(data){
+      console.log("hello : " + data.value);
+      //io.sockets.emit('hello', { value: data.value }); //SV ส่งให้ทุกคน
+	  socket.broadcast.emit('hello', { value: data.value }); //SV ส่งให้ทุกคนยกเว้นตัวเอง
 	  //sockets.emit('hello', { value: data.value }); //SV ส่งไห้ตัวเองเท่านั้น
   });
   socket.on('disconnect', function(){
       console.log("disconnect");
   });
-  //io.sockets.emit('hello', { value: "welcome" });
+  io.sockets.emit('hello', { value: "welcome" });
 });
 server.listen(81, function(){
   console.log('listening on *:81');
