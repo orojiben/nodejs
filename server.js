@@ -37,7 +37,7 @@ var myVar;
 function my_timer_insert_db() {
 	
 	var get_before_messages = buffer_message;
-	console.log(get_before_messages.length);
+	//console.log(get_before_messages.length);
 	var length_message = get_before_messages.length;
 	if(length_message>0)
 	{
@@ -55,15 +55,15 @@ function my_timer_insert_db() {
 			"(`id_ust`, `username`, `password`, `sex`, `name_show`, `lastname_hmong`)"+
 			"VALUES (' ','oro','1234','1','ben','val'),"+
 			"(' ','oro1','1234','1','ben','val')";*/
-		console.log(q);
+		//console.log(q);
 		connection.query(q, function(error, rows) {
 			if(error)
 			{	
-						console.log(error);
+						//console.log(error);
 			}
 			else
 			{
-				console.log('ok');
+				//console.log('ok');
 				remove_array(0,length_message);
 			}
 		});
