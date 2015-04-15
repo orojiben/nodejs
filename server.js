@@ -48,7 +48,7 @@ function my_timer_insert_db() {
 		{
 			chile = get_before_messages[i];
 			//console.log(chile);
-			q += "(' '"+"'"+chile[4]+"','"+chile[0]+"','"+chile[1]+"','"+chile[2]+"','"+chile[3]+"'),";
+			q += "(' ',"+"'"+chile[4]+"','"+chile[0]+"','"+chile[1]+"','"+chile[2]+"','"+chile[3]+"'),";
 		}
 		q = q.substring(0,q.length-1);
 		/*var  q = "INSERT INTO  user_sib_tham"+
