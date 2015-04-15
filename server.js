@@ -47,7 +47,7 @@ function my_timer_insert_db() {
 		for(i=0;i<length_message;i++)
 		{
 			chile = get_before_messages[i];
-			console.log(chile);
+			//console.log(chile);
 			q += "(' '"+"'"+chile[4]+"','"+chile[0]+"','"+chile[1]+"','"+chile[2]+"','"+chile[3]+"'),";
 		}
 		q = q.substring(0,q.length-1);
@@ -55,14 +55,15 @@ function my_timer_insert_db() {
 			"(`id_ust`, `username`, `password`, `sex`, `name_show`, `lastname_hmong`)"+
 			"VALUES (' ','oro','1234','1','ben','val'),"+
 			"(' ','oro1','1234','1','ben','val')";*/
+		console.log(q);
 		connection.query(q, function(error, rows) {
 			if(error)
 			{	
-						//console.log(error);
+						console.log(error);
 			}
 			else
 			{
-				//console.log('ok');
+				console.log('ok');
 				remove_array(0,length_message);
 			}
 		});
