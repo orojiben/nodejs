@@ -34,7 +34,25 @@ server.listen(81, function(){
 
 var myVar;
 
-function my_timer_insert_db() {
+function get_messages_connect(sockets) 
+{
+	connection.query("SELECT * FROM `messages_all` WHERE 1 ORDER BY id_ca DESC LIMIT 20", function(error, rows) 
+	{
+		if(error)
+		{
+			//console.log(error);
+		}
+		else
+		{
+			//console.log(rows[0].name_show);
+			sockets.emit('receive_messages_first', { value: rows });
+			//console.log(rows.length);
+		}
+	});
+}
+//get_messages_connect() ;
+function my_timer_insert_db() 
+{
 	
 	var get_before_messages = buffer_message;
 	//console.log(get_before_messages.length);
