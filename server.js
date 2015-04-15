@@ -26,6 +26,7 @@ io.sockets.on('connection', function(socket){
   socket.on('disconnect', function(){
       console.log("disconnect");
   });
+  get_messages_connect(socket);
   //io.sockets.emit('hello', { value: "welcome" });
 });
 server.listen(81, function(){
@@ -34,7 +35,7 @@ server.listen(81, function(){
 
 var myVar;
 
-function get_messages_connect(sockets) 
+function get_messages_connect(socket) 
 {
 	connection.query("SELECT * FROM `messages_all` WHERE 1 ORDER BY id_ca DESC LIMIT 20", function(error, rows) 
 	{
@@ -45,7 +46,7 @@ function get_messages_connect(sockets)
 		else
 		{
 			//console.log(rows[0].name_show);
-			sockets.emit('receive_messages_first', { value: rows });
+			socket.emit('receive_messages_first', { value: rows });
 			//console.log(rows.length);
 		}
 	});
