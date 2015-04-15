@@ -37,7 +37,7 @@ var myVar;
 function my_timer_insert_db() {
 	
 	var get_before_messages = buffer_message;
-	//console.log(get_before_messages.length);
+	console.log(get_before_messages.length);
 	var length_message = get_before_messages.length;
 	if(length_message>0)
 	{
@@ -47,6 +47,7 @@ function my_timer_insert_db() {
 		for(i=0;i<length_message;i++)
 		{
 			chile = get_before_messages[i];
+			console.log(chile);
 			q += "(' '"+"'"+chile[4]+"','"+chile[0]+"','"+chile[1]+"','"+chile[2]+"','"+chile[3]+"'),";
 		}
 		q = q.substring(0,q.length-1);
