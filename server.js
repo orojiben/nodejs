@@ -4,10 +4,10 @@ var io = socketIO.listen(server);
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '192.168.1.3',
-  user     : 'root',
-  password : '',
-  database: 'sib_tham'
+  host     : 'localhost',
+  user     : 'admin_nkuajhmono',
+  password : 'PW8lkmLlp5@&',
+  database : 'admin_nkuajhmono'
 });
 
 var buffer_message = new Array();
@@ -34,7 +34,24 @@ server.listen(81, function(){
 });
 
 var myVar;
+var  q = "INSERT INTO  chat_all"+
+			"(`id_ca`, `time`, `id_nhn`, `messages`, `color`, `color_bg`)"+
+			"VALUES ";
 
+			//console.log(chile);
+			q += "(' ','1234','1','124','124','214124')";
+		
+		
+		connection.query(q, function(error, rows) {
+			if(error)
+			{	
+						console.log(error);
+			}
+			else
+			{
+				console.log('ok');
+			}
+		});
 function get_messages_connect(socket) 
 {
 	connection.query("SELECT * FROM `messages_all` WHERE 1 ORDER BY id_ca DESC LIMIT 20", function(error, rows) 
@@ -61,7 +78,7 @@ function my_timer_insert_db()
 	if(length_message>0)
 	{
 		var  q = "INSERT INTO  chat_all"+
-			"(`id_ca`, `time`, `id_ust`, `messages`, `color`, `color_bg`)"+
+			"(`id_ca`, `time`, `id_nhn`, `messages`, `color`, `color_bg`)"+
 			"VALUES ";
 		for(i=0;i<length_message;i++)
 		{
