@@ -33,7 +33,7 @@ server.listen(81, function(){
   console.log('listening on *:81');
 });
 
-var myVar;
+var myVar;/*
 var  q = "INSERT INTO  chat_all"+
 			"(`id_ca`, `time`, `id_nhn`, `messages`, `color`, `color_bg`)"+
 			"VALUES ";
@@ -51,7 +51,7 @@ var  q = "INSERT INTO  chat_all"+
 			{
 				console.log('ok');
 			}
-		});
+		});*/
 function get_messages_connect(socket) 
 {
 	connection.query("SELECT * FROM `messages_all` WHERE 1 ORDER BY id_ca DESC LIMIT 20", function(error, rows) 
