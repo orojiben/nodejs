@@ -29,8 +29,8 @@ io.sockets.on('connection', function(socket){
   get_messages_connect(socket);
   //io.sockets.emit('hello', { value: "welcome" });
 });
-server.listen(3000, function(){
-  console.log('listening on *:3000');
+server.listen(80, function(){
+  console.log('listening on *:80');
 });
 
 var myVar;/*
