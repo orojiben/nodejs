@@ -3,7 +3,7 @@ var socketIO = require('socket.io');
 var io = socketIO.listen(server);
 
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
   host     : 'localhost',
   user     : 'admin_nkuajhmono',
   password : 'PW8lkmLlp5@&',
