@@ -68,6 +68,24 @@ function get_messages_connect(socket)
 		}
 	});
 }
+
+function get_freinds_connect(socket,id_get_freinds) 
+{
+	connection.query("SELECT * FROM `my_freinds_all` WHERE `id_user_me` = '"+id_get_freinds+"' ORDER BY name_show ASC", function(error, rows) 
+	{
+		if(error)
+		{
+			//console.log(error);
+		}
+		else
+		{
+			//console.log(rows[0].name_show);
+			socket.emit('receive_freinds_first', { value: rows });
+			//console.log(rows.length);
+		}
+	});
+}
+
 //get_messages_connect() ;
 function my_timer_insert_db() 
 {
