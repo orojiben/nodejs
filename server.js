@@ -23,6 +23,11 @@ io.sockets.on('connection', function(socket){
 	  //socket.broadcast.emit('hello', { value: data.value }); //SV ส่งให้ทุกคนยกเว้นตัวเอง
 	  //sockets.emit('hello', { value: data.value }); //SV ส่งไห้ตัวเองเท่านั้น
   });
+  
+  socket.on('freinds_connect', function(data){
+      get_freinds_connect(socket,data.id_user_input);
+  });
+  
   socket.on('disconnect', function(){
       console.log("disconnect");
   });
