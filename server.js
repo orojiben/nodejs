@@ -143,7 +143,7 @@ function get_freinds_on(socket,id_my_freinds)
 	{
 		
 		c_id_my_freinds = id_my_freinds[i_imf];
-		console.log("   "+on_alls["3"]+" "+c_id_my_freinds);
+		//console.log("   "+on_alls["3"]+" "+c_id_my_freinds);
 		if(on_alls[""+c_id_my_freinds]=="on")
 		{
 			my_freinds_on.push(c_id_my_freinds);
