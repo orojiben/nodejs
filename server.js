@@ -50,6 +50,10 @@ io.sockets.on('connection', function(socket){
 	  my_stop_time_out();
   });
   
+  socket.on('my_start_time_out', function(){
+	  my_f_time_out();
+  });
+  
   get_messages_connect(socket);
   
 	function time_out_user()
@@ -71,7 +75,7 @@ io.sockets.on('connection', function(socket){
 		my_f_time_out();
 	}
 	
-	my_f_time_out();
+	
 	
   //setInterval(function(){time_out_user();},60000);
   
