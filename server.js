@@ -139,7 +139,7 @@ function get_freinds_on(socket,id_my_freinds)
 {
 	var my_freinds_on = new Array();
 	length_my_freinds_on = id_my_freinds.length;
-	for(i_imf=0;i<length_my_freinds_on;i_imf++)
+	for(i_imf=0;i_imf<length_my_freinds_on;i_imf++)
 	{
 		if(id_my_freinds[""+i_imf]=="on")
 		{
