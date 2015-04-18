@@ -139,6 +139,10 @@ function get_freinds_on(socket,id_my_freinds)
 {
 	var my_freinds_on = {};
 	length_my_freinds_on = id_my_freinds.length;
+	if(length_my_freinds_on==0)
+	{
+		return ;
+	}
 	for(i_imf=0;i_imf<length_my_freinds_on;i_imf++)
 	{
 		
