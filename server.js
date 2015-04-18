@@ -10,6 +10,12 @@ var connection = mysql.createPool({
   database : 'admin_nkuajhmono'
 });
 
+
+var on_alls = {};// associativeArray["id"] = id
+/*associativeArray["one"] = "First";
+associativeArray["two"] = "Second";
+associativeArray["three"] = "Third";*/
+
 var buffer_message = new Array();
 
 io.sockets.on('connection', function(socket){
@@ -21,17 +27,54 @@ io.sockets.on('connection', function(socket){
 		img:data.img,color:data.color,color_bg:data.color_bg,time:data.time}); //SV ส่งให้ทุกคน
 		buffer_message.push([data.idu,data.messages,data.color,data.color_bg,data.time_db]);
 	  //socket.broadcast.emit('hello', { value: data.value }); //SV ส่งให้ทุกคนยกเว้นตัวเอง
-	  //sockets.emit('hello', { value: data.value }); //SV ส่งไห้ตัวเองเท่านั้น
+	  //socket.emit('hello', { value: data.value }); //SV ส่งไห้ตัวเองเท่านั้น
   });
   
-  socket.on('freinds_connect', function(data){
-      get_freinds_connect(socket,data.id_user_input);
+  socket.on('my_freinds', function(data){
+	socket.id_user = ""+data.id_user_input+"";
+	on_alls[socket.id_user] = "on";
+    get_freinds_connect(socket,data.id_user_input);
+  });
+  
+  socket.on('freinds_on', function(data){
+    get_freinds_on(socket,data.input_list_my_freinds);
   });
   
   socket.on('disconnect', function(){
+	  id_user = socket.id_user;
+	  delete on_alls[id_user];
       console.log("disconnect");
   });
+  
+  socket.on('my_stop_time_out', function(){
+	  my_stop_time_out();
+  });
+  
   get_messages_connect(socket);
+  
+	function time_out_user()
+	{
+		socket.disconnect();
+	}
+
+	var my_time_out;
+
+	function my_f_time_out() {
+		my_time_out = setTimeout(
+			function(){ 
+			time_out_user();
+			}, 60000);
+	}
+
+	function my_stop_time_out() {
+		clearTimeout(my_time_out);
+		my_f_time_out();
+	}
+	
+	my_f_time_out();
+	
+  //setInterval(function(){time_out_user();},60000);
+  
   //io.sockets.emit('hello', { value: "welcome" });
 });
 server.listen(3000, function(){
@@ -89,6 +132,21 @@ function get_freinds_connect(socket,id_get_freinds)
 			//console.log(rows.length);
 		}
 	});
+}
+
+
+function get_freinds_on(socket,id_my_freinds) 
+{
+	var my_freinds_on = new Array();
+	length_my_freinds_on = id_my_freinds.length;
+	for(i_imf=0;i<length_my_freinds_on;i_imf++)
+	{
+		if(id_my_freinds[""+i_imf]=="on")
+		{
+			my_freinds_on.push(i_imf);
+		}
+	}
+	socket.emit('freinds_on', { value: my_freinds_on });
 }
 
 //get_messages_connect() ;
