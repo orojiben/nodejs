@@ -101,7 +101,7 @@ function clear_db_chat_all()
 		{
 			if(rows_count>20)
 			{
-				connection.query("DELETE FROM `chat_all` WHERE 1 limit 0,"+(rows_count-20), function(error, count_rows) 
+				connection.query("DELETE FROM `chat_all` WHERE 1 limit "+(rows_count-20), function(error, count_rows) 
 				{
 					console.log("ok");
 				});
