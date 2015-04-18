@@ -91,16 +91,16 @@ function clear_db_chat_all()
 {
 	connection.query("SELECT COUNT( * )AS rows_count FROM chat_all WHERE (SELECT COUNT( * ) FROM chat_all) > '20'", function(error, count_rows) 
 	{
-		console.log("ok"+count_rows[0].namesCount);
+		console.log("ok"+count_rows[0].rows_count);
 		if(error)
 		{
 			//console.log(error);
 		}
 		else
 		{
-			if(count_rows[0].namesCount>20)
+			if(count_rows[0].rows_count>20)
 			{
-				connection.query("DELETE FROM `chat_all` WHERE 1 limit 0,"+(count_rows[0].namesCount-20), function(error, count_rows) 
+				connection.query("DELETE FROM `chat_all` WHERE 1 limit 0,"+(count_rows[0].rows_count-20), function(error, count_rows) 
 				{
 					console.log("ok");
 				});
