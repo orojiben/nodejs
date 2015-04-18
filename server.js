@@ -85,14 +85,12 @@ server.listen(3000, function(){
   console.log('listening on *:3000');
 });
 
-setInterval(function(){clear_db_chat_all();},86400000);
-
 function clear_db_chat_all() 
 {
 	connection.query("SELECT COUNT( * )AS rows_count FROM chat_all WHERE (SELECT COUNT( * ) FROM chat_all) > '20'", function(error, count_rows) 
 	{
 		var rows_count = parseInt(count_rows[0].rows_count);
-		console.log("ok"+rows_count);
+		//console.log("ok"+rows_count);
 		if(error)
 		{
 			//console.log(error);
@@ -103,7 +101,7 @@ function clear_db_chat_all()
 			{
 				connection.query("DELETE FROM `chat_all` WHERE 1 limit "+(rows_count-20), function(error, count_rows) 
 				{
-					console.log("ok");
+					//console.log("ok");
 				});
 				
 			}
@@ -127,7 +125,8 @@ FROM user_nkauj_hmo_no )
 LIMIT 0 , 30
 	*/
 }
-clear_db_chat_all();
+setInterval(function(){clear_db_chat_all();},86400000);
+//clear_db_chat_all();
 var myVar;/*
 var  q = "INSERT INTO  chat_all"+
 			"(`id_ca`, `time`, `id_nhn`, `messages`, `color`, `color_bg`)"+
