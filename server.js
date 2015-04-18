@@ -91,6 +91,7 @@ function clear_db_chat_all()
 {
 	connection.query("SELECT COUNT( * )FROM chat_all WHERE (SELECT COUNT( * ) FROM chat_all) > '20'", function(error, count_rows) 
 	{
+		console.log("ok"+count_rows);
 		if(error)
 		{
 			//console.log(error);
