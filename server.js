@@ -141,7 +141,7 @@ function get_freinds_on(socket,id_my_freinds)
 	length_my_freinds_on = id_my_freinds.length;
 	for(i_imf=0;i_imf<length_my_freinds_on;i_imf++)
 	{
-		onsole.log(rows[0].name_show);
+		//onsole.log(rows[0].name_show);
 		c_id_my_freinds = id_my_freinds[i_imf];
 		if(on_alls[""+c_id_my_freinds]=="on")
 		{
