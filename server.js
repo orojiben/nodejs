@@ -137,7 +137,7 @@ function get_freinds_connect(socket,id_get_freinds)
 
 function get_freinds_on(socket,id_my_freinds) 
 {
-	var my_freinds_on = new Array();
+	var my_freinds_on = {};
 	length_my_freinds_on = id_my_freinds.length;
 	for(i_imf=0;i_imf<length_my_freinds_on;i_imf++)
 	{
@@ -146,7 +146,7 @@ function get_freinds_on(socket,id_my_freinds)
 		//console.log("   "+on_alls["3"]+" "+c_id_my_freinds);
 		if(on_alls[""+c_id_my_freinds]=="on")
 		{
-			my_freinds_on.push(c_id_my_freinds);
+			my_freinds_on[""+c_id_my_freinds]="on";
 		}
 	}
 	socket.emit('freinds_on', { value: my_freinds_on });
