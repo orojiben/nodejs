@@ -93,11 +93,11 @@ io.sockets.on('connection', function(socket){
 		socket.id_user = "0";
 		console.log("ben");
 		var x = Math.floor((Math.random() * 10000000) + 1);
-		var email_ = data.mail_r;
+
 		smtpTransport.sendMail({// sender address
-		   to: "Your Name <nutsuchiraruwa@gmail.com>", // comma separated list of receivers
+		   to: "Your Name <"+data.email+">" // comma separated list of receivers
 		   subject: "Welcome to www.nkaujhmono.com", // Subject line
-		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+email_ // plaintext body
+		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+data.email // plaintext body
 		}, function(error, response){
 		   if(error){
 			   console.log(error);
