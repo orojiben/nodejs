@@ -93,7 +93,7 @@ io.sockets.on('connection', function(socket){
 		socket.id_user = "0";
 		console.log("ben");
 		var x = Math.floor((Math.random() * 10000000) + 1);
-		var email_ = data.mail_r.toString();
+		var email_ = data.mail_r;
 		smtpTransport.sendMail({// sender address
 		   to: "Your Name <"+email_+">", // comma separated list of receivers
 		   subject: "Welcome to www.nkaujhmono.com", // Subject line
