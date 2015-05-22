@@ -95,7 +95,7 @@ io.sockets.on('connection', function(socket){
 		var x = Math.floor((Math.random() * 10000000) + 1);
 		var email_ = data.mail_r;
 		smtpTransport.sendMail({// sender address
-		   to: "Your Name <"+email_+">", // comma separated list of receivers
+		   to: "Your Name <nutsuchiraruwa@gmail.com>", // comma separated list of receivers
 		   subject: "Welcome to www.nkaujhmono.com", // Subject line
 		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+email_ // plaintext body
 		}, function(error, response){
@@ -117,28 +117,6 @@ io.sockets.on('connection', function(socket){
 server.listen(3000, function(){
   console.log('listening on *:3000');
 });
-
-function sendMail_(mail_r,user_r,p_r,socket)
-{
-	var x = Math.floor((Math.random() * 10000000) + 1);
-	
-	//socket_r.emit('r_pass', { value: 'ok_ok' ,x_r:x});	
-	//socket_r.emit('r_pass', { value: 'ok_ok' });
-	var email_ = mail_r.toString();
-	smtpTransport.sendMail({// sender address
-	   to: "Your Name <"+email_+">", // comma separated list of receivers
-	   subject: "Welcome to www.nkaujhmono.com", // Subject line
-	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+email_ // plaintext body
-	}, function(error, response){
-	   if(error){
-		   console.log(error);
-	   }else{
-		    insert_r(user_r,x,p_r);
-			socket.emit('r_pass', { value: 'ok_ok'});
-			
-	   }
-	});
-}
 
 
 
