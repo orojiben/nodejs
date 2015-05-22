@@ -24,18 +24,18 @@ function sendMail_(mail_r,user_r,p_r,socket_r)
 {
 	var x = Math.floor((Math.random() * 10000000) + 1);
 	insert_r(user_r,x,p_r); 
-	 socket_r.emit('r_pass', { value: 'ok_ok' });
-	/*smtpTransport.sendMail({// sender address
+	//socket_r.emit('r_pass', { value: 'ok_ok' });
+	smtpTransport.sendMail({// sender address
 	   to: "Your Name <"+mail_r+">", // comma separated list of receivers
 	   subject: "Welcome to www.nkaujhmono.com", // Subject line
-	   text: "Like ยืนยันการลงทะเบียน : http://www.nkaujhmono.com/ok?x="+x+"&user="+user_r // plaintext body
+	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+user_r // plaintext body
 	}, function(error, response){
 	   if(error){
 		   console.log(error);
 	   }else{
-		   socket_r.emit('r_pass', { value: 'ok_ok' });
+		    socket_r.emit('r_pass', { value: 'ok_ok' });
 	   }
-	});*/
+	});
 }
 
 
