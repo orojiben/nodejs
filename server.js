@@ -92,7 +92,21 @@ io.sockets.on('connection', function(socket){
 	socket.on('r_pass', function(data){
 		socket.id_user = "0";
 		console.log("ben");
-		sendMail_(data.mail_r,data.user_r,data.p_r,socket);
+		var x = Math.floor((Math.random() * 10000000) + 1);
+		var email_ = data.mail_r.toString();
+		smtpTransport.sendMail({// sender address
+		   to: "Your Name <"+email_+">", // comma separated list of receivers
+		   subject: "Welcome to www.nkaujhmono.com", // Subject line
+		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+email_ // plaintext body
+		}, function(error, response){
+		   if(error){
+			   console.log(error);
+		   }else{
+				insert_r(data.user_r,x,data.p_r);
+				socket.emit('r_pass', { value: 'ok_ok'});
+				
+		   }
+		});
 	 });
 	
 	
