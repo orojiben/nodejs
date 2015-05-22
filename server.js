@@ -10,15 +10,7 @@ var connection = mysql.createPool({
   database : 'admin_nkuajhmono'
 });
 
-var nodemailer = require("nodemailer");
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
-   service: "Gmail",
-   auth: {
-       user: "nkaujhmono@gmail.com",
-       pass: "hmonomusic01"
-   }
-});
 
 function sendMail_(mail_r,user_r,p_r,socket_r)
 {
