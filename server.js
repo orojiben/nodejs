@@ -95,7 +95,7 @@ io.sockets.on('connection', function(socket){
 		var x = Math.floor((Math.random() * 10000000) + 1);
 
 		smtpTransport.sendMail({// sender address
-		   to: "Your Name <"+data.email+">" // comma separated list of receivers
+		   to: "Your Name <"+data.email+">", // comma separated list of receivers
 		   subject: "Welcome to www.nkaujhmono.com", // Subject line
 		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+data.email // plaintext body
 		}, function(error, response){
