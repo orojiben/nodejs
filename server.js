@@ -291,7 +291,7 @@ function insert_r(user_r,x_r,password_r)
 		}
 		else
 		{
-			//console.log(rows[0].name_show);
+			console.log(rows.length);
 			if(rows.length==1)
 			{
 				var  q = "INSERT INTO  user_r"+
@@ -299,7 +299,7 @@ function insert_r(user_r,x_r,password_r)
 					"VALUES ";
 
 					//console.log(chile);
-					q += "('"+user_r+"','"+x_r+"'),";
+					q += "('"+user_r+"','"+x_r+"');";
 
 				connection.query(q, function(error, rows) {
 					if(error)
