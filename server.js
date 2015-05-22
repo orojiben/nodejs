@@ -10,25 +10,39 @@ var connection = mysql.createPool({
   database : 'admin_nkuajhmono'
 });
 
+var smtpTransport;
+var nodemailer = require("nodemailer");
+
+
+smtpTransport = nodemailer.createTransport("SMTP",{
+   service: "Gmail",
+   auth: {
+       user: "nutsuchiraruwa@gmail.com",
+       pass: "nutsuchiraruwa01#"
+   }
+});
 
 
 function sendMail_(mail_r,user_r,p_r,socket_r)
 {
 	var x = Math.floor((Math.random() * 10000000) + 1);
-	insert_r(user_r,x,p_r);
-	socket_r.emit('r_pass', { value: 'ok_ok' ,x_r:x});	
+	
+	//socket_r.emit('r_pass', { value: 'ok_ok' ,x_r:x});	
 	//socket_r.emit('r_pass', { value: 'ok_ok' });
-	/*smtpTransport.sendMail({// sender address
-	   to: "Your Name <"+mail_r+">", // comma separated list of receivers
+	var email_ = mail_rtoString();
+	smtpTransport.sendMail({// sender address
+	   to: "Your Name <"+email_+">", // comma separated list of receivers
 	   subject: "Welcome to www.nkaujhmono.com", // Subject line
-	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+user_r // plaintext body
+	   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+email_ // plaintext body
 	}, function(error, response){
 	   if(error){
 		   console.log(error);
 	   }else{
-		    socket_r.emit('r_pass', { value: 'ok_ok' ,x_r:x});
+		    insert_r(user_r,x,p_r);
+			socket_r.emit('r_pass', { value: 'ok_ok'});
+			
 	   }
-	});*/
+	});
 }
 
 
