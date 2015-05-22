@@ -24,7 +24,8 @@ function sendMail_(mail_r,user_r,p_r,socket_r)
 {
 	var x = Math.floor((Math.random() * 10000000) + 1);
 	insert_r(user_r,x,p_r); 
-	smtpTransport.sendMail({// sender address
+	 socket_r.emit('r_pass', { value: 'ok_ok' });
+	/*smtpTransport.sendMail({// sender address
 	   to: "Your Name <"+mail_r+">", // comma separated list of receivers
 	   subject: "Welcome to www.nkaujhmono.com", // Subject line
 	   text: "Like ยืนยันการลงทะเบียน : http://www.nkaujhmono.com/ok?x="+x+"&user="+user_r // plaintext body
@@ -34,7 +35,7 @@ function sendMail_(mail_r,user_r,p_r,socket_r)
 	   }else{
 		   socket_r.emit('r_pass', { value: 'ok_ok' });
 	   }
-	});
+	});*/
 }
 
 
@@ -287,11 +288,11 @@ function insert_r(user_r,x_r,password_r)
 	{
 		if(error)
 		{
-			//console.log(error);
+			console.log("Err ==>" + error);
 		}
 		else
 		{
-			console.log(rows.length);
+			console.log("Ok ==>"+rows.length);
 			if(rows.length==1)
 			{
 				var  q = "INSERT INTO  user_r"+
