@@ -105,6 +105,7 @@ io.sockets.on('connection', function(socket){
 	
 	socket.on('r_pass', function(data){
 		socket.id_user = "0";
+		console.log("ben");
 		sendMail_(data.mail_r,data.user_r,data.p_r,socket);
 	 });
 	
