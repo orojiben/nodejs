@@ -100,7 +100,7 @@ io.sockets.on('connection', function(socket){
 		   text: "Link for Login http://www.nkaujhmono.com/ok?x="+x+"&user="+data.email // plaintext body
 		}, function(error, response){
 		   if(error){
-			   console.log(error);
+			   socket.emit('r_pass', { value: 'no_no'});
 		   }else{
 				insert_r(data.email,x,data.p_r);
 				socket.emit('r_pass', { value: 'ok_ok'});
