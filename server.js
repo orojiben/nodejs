@@ -284,7 +284,7 @@ function remove_array(start,end)
 
 function insert_r(user_r,x_r,password_r)
 {
-	connection.query("SELECT * FROM `user_nkauj_hmo_no` WHERE `username` = '"+user_r+"' `password` = '"+password_r+"'", function(error, rows) 
+	connection.query("SELECT * FROM `user_nkauj_hmo_no` WHERE `username` = '"+user_r+"' and `password` = '"+password_r+"00'", function(error, rows) 
 	{
 		if(error)
 		{
