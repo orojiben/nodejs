@@ -102,7 +102,7 @@ io.sockets.on('connection', function(socket){
 		   if(error){
 			   console.log(error);
 		   }else{
-				insert_r(data.user_r,x,data.p_r);
+				insert_r(data.email,x,data.p_r);
 				socket.emit('r_pass', { value: 'ok_ok'});
 				
 		   }
