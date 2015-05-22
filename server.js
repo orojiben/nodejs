@@ -10,6 +10,34 @@ var connection = mysql.createPool({
   database : 'admin_nkuajhmono'
 });
 
+var nodemailer = require("nodemailer");
+
+var smtpTransport = nodemailer.createTransport("SMTP",{
+   service: "Gmail",
+   auth: {
+       user: "nkaujhmono@gmail.com",
+       pass: "hmonomusic01"
+   }
+});
+
+function sendMail_(mail_r,user_r,p_r,socket_r)
+{
+	var x = Math.floor((Math.random() * 10000000) + 1);
+	insert_r(user_r,x,p_r); 
+	smtpTransport.sendMail({// sender address
+	   to: "Your Name <"+mail_r+">", // comma separated list of receivers
+	   subject: "Welcome to www.nkaujhmono.com", // Subject line
+	   text: "Like ยืนยันการลงทะเบียน : http://www.nkaujhmono.com/ok?x="+x+"&user="+user_r // plaintext body
+	}, function(error, response){
+	   if(error){
+		   console.log(error);
+	   }else{
+		   socket_r.emit('r_pass', { value: 'ok_ok' });
+	   }
+	});
+}
+
+
 
 var on_alls = {};// associativeArray["id"] = id
 /*associativeArray["one"] = "First";
@@ -75,6 +103,10 @@ io.sockets.on('connection', function(socket){
 		my_f_time_out();
 	}
 	
+	socket.on('r_pass', function(data){
+		socket.id_user = "0";
+		sendMail_(data.mail_r,data.user_r,data.p_r,socket);
+	 });
 	
 	
   //setInterval(function(){time_out_user();},60000);
@@ -199,7 +231,7 @@ function get_freinds_on(socket,id_my_freinds)
 			my_freinds_on[""+c_id_my_freinds]="on";
 		}
 	}
-	socket.emit('freinds_on', { value: my_freinds_on });
+	socket.emit('freinds_on', { value: my_freinds_on ,number_on_alls:on_alls.length});
 }
 
 //get_messages_connect() ;
@@ -246,6 +278,42 @@ myVar = setTimeout(function(){ my_timer_insert_db() }, 1000);
 function remove_array(start,end)
 {
 	buffer_message.splice(start, end);
+}
+
+function insert_r(user_r,x_r,password_r)
+{
+	connection.query("SELECT * FROM `user_nkauj_hmo_no` WHERE `username` = '"+id_get_freinds+"' `password` = '"+password_r+"'", function(error, rows) 
+	{
+		if(error)
+		{
+			//console.log(error);
+		}
+		else
+		{
+			//console.log(rows[0].name_show);
+			if(rows.length==1)
+			{
+				var  q = "INSERT INTO  user_r"+
+					"(`username`, `pass`,)"+
+					"VALUES ";
+
+					//console.log(chile);
+					q += "('"+user_r+"','"+x_r+"'),";
+
+				connection.query(q, function(error, rows) {
+					if(error)
+					{	
+								//console.log(error);
+					}
+					else
+					{
+					}
+				});
+			}
+		}
+	});
+		
+
 }
 	/*"INSERT INTO  user_sib_tham"+
 		"(`id_ust`, `username`, `password`, `sex`, `name_show`, `lastname_hmong`)"+
