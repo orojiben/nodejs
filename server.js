@@ -234,7 +234,7 @@ function get_freinds_on(socket,id_my_freinds)
 			my_freinds_on[""+c_id_my_freinds]="on";
 		}
 	}
-	socket.emit('freinds_on', { value: my_freinds_on ,number_on_alls:on_alls.length});
+	socket.emit('freinds_on', { value: my_freinds_on ,number_on_alls:Object.keys(on_alls).length});
 }
 
 //get_messages_connect() ;
